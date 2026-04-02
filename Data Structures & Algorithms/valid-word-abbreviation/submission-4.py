@@ -1,0 +1,23 @@
+class Solution:
+    def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+        i = 0
+        j = 0
+        while i<len(abbr) and j<len(word):
+            if abbr[i].isdigit():
+                if abbr[i] == '0':
+                    return False
+                num = 0
+                while i<len(abbr) and abbr[i].isdigit():
+                    num = num*10 + int(abbr[i])
+                    i = i+1
+                j = j + num
+            elif abbr[i] == word[j]:
+                j = j+1
+                i = i+1
+            else:
+                return False
+        print(i,j)
+        if i==len(abbr) and j==len(word):
+            return True
+
+        return False
